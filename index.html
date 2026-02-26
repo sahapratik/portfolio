@@ -362,7 +362,7 @@ section{position:relative;z-index:10;padding:7rem 3rem;overflow-x:hidden;}
 .eyebrow{
   display:flex;align-items:center;gap:.9rem;
   margin-bottom:2.2rem;
-  opacity:0;animation:fIn .7s .35s forwards;
+  animation:fIn .7s .35s both;
 }
 .eyebrow-line{width:48px;height:1px;background:linear-gradient(90deg,var(--acc),transparent);}
 .eyebrow-txt{
@@ -384,7 +384,7 @@ section{position:relative;z-index:10;padding:7rem 3rem;overflow-x:hidden;}
 }
 .hn-row:nth-child(2) .hn-inner{animation-delay:.09s;}
 @keyframes hnUp{from{transform:translateY(105%);}to{transform:translateY(0);}}
-@keyframes fIn{to{opacity:1;}}
+@keyframes fIn{from{opacity:0;}to{opacity:1;}}
 
 /* handle / typed */
 .hero-handle{
@@ -392,7 +392,7 @@ section{position:relative;z-index:10;padding:7rem 3rem;overflow-x:hidden;}
   font-weight:500;color:var(--muted);
   display:flex;align-items:center;gap:.3rem;
   margin-bottom:2rem;min-height:2rem;
-  opacity:0;animation:fIn .7s .3s forwards;
+  animation:fIn .7s .3s both;
   flex-wrap:wrap;
 }
 .h-prefix{color:var(--dim);}
@@ -409,7 +409,7 @@ section{position:relative;z-index:10;padding:7rem 3rem;overflow-x:hidden;}
   max-width:600px;
   font-size:1.05rem;font-weight:400;color:var(--muted);
   line-height:1.8;margin-bottom:3rem;
-  opacity:0;animation:fIn .7s .65s forwards;
+  animation:fIn .7s .65s both;
 }
 .hero-bio strong{color:var(--txt);font-weight:600;}
 
@@ -417,7 +417,7 @@ section{position:relative;z-index:10;padding:7rem 3rem;overflow-x:hidden;}
 .hero-btns{
   display:flex;gap:1rem;flex-wrap:wrap;
   margin-bottom:3.5rem;
-  opacity:0;animation:fIn .7s .82s forwards;
+  animation:fIn .7s .82s both;
 }
 
 .btn-primary{
@@ -461,7 +461,7 @@ section{position:relative;z-index:10;padding:7rem 3rem;overflow-x:hidden;}
   padding:.55rem 1.1rem;border-radius:10px;
   text-decoration:none;color:var(--muted);font-size:.85rem;font-weight:500;
   transition:all .3s;
-  opacity:0;animation:fIn .7s 1s forwards;
+  animation:fIn .7s 1s both;
 }
 .studio-badge:hover{border-color:var(--acc);color:var(--acc);transform:translateX(4px);}
 .studio-icon{
@@ -474,7 +474,7 @@ section{position:relative;z-index:10;padding:7rem 3rem;overflow-x:hidden;}
 /* hero right — stat cards */
 .hero-stats{
   display:flex;flex-direction:column;gap:.9rem;
-  opacity:0;animation:fIn .7s 1.15s forwards;
+  animation:fIn .7s 1.15s both;
 }
 .stat-card{
   background:rgba(9,21,37,.85);
@@ -1002,22 +1002,6 @@ section{position:relative;z-index:10;padding:7rem 3rem;overflow-x:hidden;}
 /* ════════════════════════════════════════
    FOOTER
 ════════════════════════════════════════ */
-footer{
-  border-top:1px solid var(--bd);
-  padding:2rem 3rem;
-  display:flex;align-items:center;justify-content:space-between;
-  flex-wrap:wrap;gap:1rem;
-  background:var(--bg2);position:relative;z-index:10;
-}
-.ft-l{font-size:.85rem;font-weight:400;color:var(--dim);}
-.ft-l span{color:var(--muted);}
-.ft-cta{
-  background:linear-gradient(135deg,var(--acc),#1a75d8);color:#fff;
-  padding:.55rem 1.5rem;border-radius:9px;font-weight:700;
-  text-decoration:none;font-size:.875rem;
-  transition:all .25s;box-shadow:0 5px 22px rgba(77,166,255,.22);
-}
-.ft-cta:hover{transform:translateY(-2px);box-shadow:0 10px 35px rgba(77,166,255,.45);}
 
 /* ════════════════════════════════════════
    HAMBURGER MENU (mobile)
@@ -1210,7 +1194,7 @@ footer{
 ════════════════════════════════════════ */
 #scroll-progress{
   position:fixed;top:0;left:0;z-index:99999;
-  height:2px;width:0%;
+  height:1.5px;width:0%;
   background:linear-gradient(90deg,var(--acc),var(--acc2),var(--pink));
   background-size:200% 100%;
   animation:progressGlow 3s linear infinite;
@@ -1358,11 +1342,12 @@ footer{
   -webkit-background-clip:text !important;
   -webkit-text-fill-color:transparent !important;
   background-clip:text !important;
-  animation:hnUp .95s cubic-bezier(.16,1,.3,1) both, shimmer 6s linear 1s infinite !important;
+  /* hnUp runs via .hn-inner base class; shimmer starts after it finishes */
+  animation:hnUp .95s .09s cubic-bezier(.16,1,.3,1) both, shimmer 6s 1.5s linear infinite !important;
 }
 @keyframes shimmer{
-  0%{background-position:0% center;}
-  100%{background-position:300% center;}
+  0%  { background-position:0% center; }
+  100%{ background-position:300% center; }
 }
 
 /* ════════════════════════════════════════
@@ -1384,7 +1369,7 @@ footer{
 }
 #back-top.show{
   opacity:1;transform:none;
-  pointer-events:all;
+  pointer-events:auto;
 }
 #back-top:hover{
   border-color:var(--acc);
@@ -1514,7 +1499,7 @@ section::before{
 .hero-float-badges{
   display:flex;flex-wrap:wrap;gap:.55rem;
   margin-top:2rem;
-  opacity:0;animation:fIn .7s 1.3s forwards;
+  animation:fIn .7s 1.3s both;
 }
 .fbadge{
   display:inline-flex;align-items:center;gap:.4rem;
@@ -1859,14 +1844,7 @@ footer{
   width:100%;height:1px;
   background:linear-gradient(90deg,var(--bd2) 0%,transparent 80%);
   margin:1.5rem 0;
-  opacity:0;animation:fIn .7s .75s forwards;
-}
-
-/* ════════════════════════════════════════
-   SCROLL PROGRESS — refined
-════════════════════════════════════════ */
-#scroll-progress{
-  height:1.5px;
+  animation:fIn .7s .9s both;
 }
 
 /* ════════════════════════════════════════
@@ -1897,12 +1875,14 @@ footer{
   background:radial-gradient(ellipse 60% 30% at 50% 0%,
     rgba(77,166,255,.07) 0%, transparent 70%);
   pointer-events:none;z-index:0;
+  transform-origin:top center;
   animation:arrivalPulse .9s cubic-bezier(.16,1,.3,1) forwards;
+  overflow:hidden;
 }
 @keyframes arrivalPulse{
-  0%  { opacity:0; transform:scaleY(0.85); }
-  40% { opacity:1; }
-  100%{ opacity:0; }
+  0%  { opacity:0; transform:scaleY(0.8); }
+  35% { opacity:1; transform:scaleY(1); }
+  100%{ opacity:0; transform:scaleY(1); }
 }
 
 /* ── Very small (Galaxy Fold closed, iPhone SE 1st gen) ── */
@@ -1942,7 +1922,7 @@ footer{
 <div id="scroll-progress"></div>
 
 <!-- BACK TO TOP -->
-<button id="back-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<button id="back-top" aria-label="Back to top">↑</button>
 
 <!-- CURSOR ELEMENTS -->
 <div id="cursor-dot"></div>
@@ -2178,6 +2158,7 @@ footer{
 ══════════════════════════════════════ -->
 <section id="graphic-design">
 <div class="sec-num">03</div>
+<div class="wrap">
   <div class="gd-layout">
     <div class="rvl">
       <div class="gd-visual">
@@ -2232,6 +2213,7 @@ footer{
 ══════════════════════════════════════ -->
 <section id="video-editing">
 <div class="sec-num">04</div>
+<div class="wrap">
   <div class="ve-layout">
     <div class="ve-content rvl">
       <p class="chip" style="--acc:var(--pink);--chip-acc:rgba(255,107,138,.07);border-color:rgba(255,107,138,.2);color:var(--pink);"><span class="chip-dot" style="background:var(--pink);"></span>Video Editing</p>
@@ -2754,22 +2736,15 @@ function rsz(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight;}
 rsz(); window.addEventListener('resize', rsz);
 
 // Canvas parallax offset — driven by mouse
-let cvOffX = 0, cvOffY = 0;
-const cvX = gsap.quickTo({ v:0 }, "v", { duration: 2.5, ease:"power2.out", onUpdate: function(){ cvOffX = this.targets()[0].v; }});
-const cvY = gsap.quickTo({ v:0 }, "v", { duration: 2.5, ease:"power2.out", onUpdate: function(){ cvOffY = this.targets()[0].v; }});
-
-// Update canvas parallax in the mousemove handler is tricky with quickTo closures,
-// so we do it directly via GSAP:
 const _cvOff = { x: 0, y: 0 };
-gsap.quickTo(_cvOff, 'x', { duration: 2.8, ease:'power2.out' });
-gsap.quickTo(_cvOff, 'y', { duration: 2.8, ease:'power2.out' });
 
-document.addEventListener('mousemove', e => {
-  // Parallax: move canvas in opposite direction, small magnitude
-  const nx = (e.clientX / window.innerWidth  - 0.5) * -28;
-  const ny = (e.clientY / window.innerHeight - 0.5) * -28;
-  gsap.to(_cvOff, { x: nx, y: ny, duration: 2.8, ease:'power2.out', overwrite:true });
-});
+if (!isTouchDevice) {
+  document.addEventListener('mousemove', e => {
+    const nx = (e.clientX / window.innerWidth  - 0.5) * -28;
+    const ny = (e.clientY / window.innerHeight - 0.5) * -28;
+    gsap.to(_cvOff, { x: nx, y: ny, duration: 2.8, ease:'power2.out', overwrite:true });
+  });
+}
 
 class Pt {
   constructor(){ this.r(); }
@@ -2819,26 +2794,64 @@ const ldi=setInterval(()=>{
 },50);
 
 /* ────────────────────────────────────────────────
-   NAV SCROLL
-────────────────────────────────────────────────── */
-/* ────────────────────────────────────────────────
    NAV SCROLL — sticky state
 ────────────────────────────────────────────────── */
 window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('sticky',window.scrollY>50),{passive:true});
 
 /* ────────────────────────────────────────────────
-   TYPED ANIMATION
+   TYPED ANIMATION — clean rewrite
+   • Waits for loader to clear before starting
+   • No index drift, no negative slice, no desync
+   • Proper state machine: TYPING → PAUSE → DELETING → NEXT
 ────────────────────────────────────────────────── */
-const phrases=['@pratiksaha','Web Developer 💻','Graphic Designer 🎨','Video Editor 🎬','Caffeinated Creator ☕'];
-let pi=0,ci=0,del=false;
-const typEl=document.getElementById('typed');
-function typeLoop(){
-  const cur=phrases[pi];
-  if(!del){ typEl.textContent=cur.slice(0,ci++); if(ci>cur.length){del=true;setTimeout(typeLoop,2200);return;} }
-  else { typEl.textContent=cur.slice(0,ci--); if(ci<0){del=false;pi=(pi+1)%phrases.length;} }
-  setTimeout(typeLoop, del?48:80);
-}
-setTimeout(typeLoop,1900);
+(function(){
+  const phrases = ['@pratiksaha','Web Developer 💻','Graphic Designer 🎨','Video Editor 🎬','Caffeinated Creator ☕'];
+  const el = document.getElementById('typed');
+  if (!el) return;
+
+  let phraseIdx = 0;
+  let charIdx   = 0;
+  let state     = 'typing'; // 'typing' | 'pausing' | 'deleting'
+  let timer     = null;
+
+  const SPEED_TYPE   = 75;
+  const SPEED_DELETE = 40;
+  const PAUSE_END    = 2000;
+
+  function tick() {
+    const cur = phrases[phraseIdx];
+
+    if (state === 'typing') {
+      charIdx++;
+      el.textContent = cur.slice(0, charIdx);
+      if (charIdx >= cur.length) {
+        state = 'pausing';
+        timer = setTimeout(tick, PAUSE_END);
+      } else {
+        timer = setTimeout(tick, SPEED_TYPE);
+      }
+
+    } else if (state === 'pausing') {
+      state = 'deleting';
+      timer = setTimeout(tick, SPEED_DELETE);
+
+    } else if (state === 'deleting') {
+      charIdx--;
+      el.textContent = cur.slice(0, charIdx);
+      if (charIdx <= 0) {
+        charIdx = 0;
+        phraseIdx = (phraseIdx + 1) % phrases.length;
+        state = 'typing';
+        timer = setTimeout(tick, 320); // brief pause before next phrase
+      } else {
+        timer = setTimeout(tick, SPEED_DELETE);
+      }
+    }
+  }
+
+  // Start after loader clears (~2.5s) so it doesn't compete with page-in animations
+  timer = setTimeout(tick, 2500);
+})();
 
 /* ────────────────────────────────────────────────
    PROJECTS
@@ -2930,8 +2943,8 @@ document.getElementById('price-tabs').addEventListener('click',e=>{
 ────────────────────────────────────────────────── */
 const dragEl=document.getElementById('dragTxt');
 let drg=false,ox=0,oy=0,tx=0,ty=0;
-function startDrag(cx,cy){drg=true;ox=cx-tx;oy=cy-ty;dragEl.style.position='relative';dragEl.style.zIndex='5';}
-function moveDrag(cx,cy){if(!drg)return;tx=cx-ox;ty=cy-oy;dragEl.style.transform=`translate(${tx}px,${ty}px) rotate(${tx*.015}deg)`;}
+function startDrag(mx,my){drg=true;ox=mx-tx;oy=my-ty;dragEl.style.position='relative';dragEl.style.zIndex='5';}
+function moveDrag(mx,my){if(!drg)return;tx=mx-ox;ty=my-oy;dragEl.style.transform=`translate(${tx}px,${ty}px) rotate(${tx*.015}deg)`;}
 dragEl.addEventListener('mousedown',e=>{startDrag(e.clientX,e.clientY);e.preventDefault();});
 document.addEventListener('mousemove',e=>{moveDrag(e.clientX,e.clientY);});
 document.addEventListener('mouseup',()=>drg=false);
@@ -2982,16 +2995,18 @@ window.addEventListener('scroll', () => {
     backTop.classList.remove('show');
   }
 
-  // Active nav link highlight
-  const sections = ['hero','services','projects','pricing','contact'];
+  // Active nav link highlight — tracks all major sections
+  const navSections = ['hero','services','graphic-design','video-editing','process','testimonials','projects','pricing','contact','coffee','quotes'];
   let current = '';
-  sections.forEach(id => {
-    const el = document.getElementById(id);
-    if (el && window.scrollY >= el.offsetTop - 120) current = id;
+  navSections.forEach(id => {
+    const sec = document.getElementById(id);
+    if (sec && window.scrollY >= sec.offsetTop - 130) current = id;
   });
+  // Map section IDs to their nav link hrefs
+  const navMap = { 'hero':'#hero','services':'#services','graphic-design':'#services','video-editing':'#services','process':'#projects','testimonials':'#projects','projects':'#projects','pricing':'#pricing','contact':'#contact','coffee':'#contact','quotes':'#contact' };
   document.querySelectorAll('.n-links a').forEach(a => {
     a.classList.remove('active');
-    if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+    if (navMap[current] && a.getAttribute('href') === navMap[current]) a.classList.add('active');
   });
 }, { passive: true });
 
@@ -2999,7 +3014,7 @@ window.addEventListener('scroll', () => {
    MAGNETIC BUTTON EFFECT (desktop only)
 ────────────────────────────────────────────────── */
 if (!isTouchDevice) {
-  document.querySelectorAll('.btn-primary, .btn-ghost, .ft-cta').forEach(btn => {
+  document.querySelectorAll('.btn-primary, .btn-ghost, .footer-bottom .pr-cta').forEach(btn => {
     btn.addEventListener('mousemove', e => {
       const r = btn.getBoundingClientRect();
       const x = e.clientX - r.left - r.width / 2;
@@ -3016,8 +3031,8 @@ if (!isTouchDevice) {
     });
   });
 
-  /* Subtle tilt on service cards */
-  document.querySelectorAll('.svc-card, .price-card, .q-card').forEach(card => {
+  /* Subtle tilt on service and quote cards */
+  document.querySelectorAll('.svc-card, .q-card').forEach(card => {
     card.addEventListener('mousemove', e => {
       const r = card.getBoundingClientRect();
       const x = (e.clientX - r.left) / r.width - 0.5;
@@ -3076,25 +3091,34 @@ if (heroStats) statObs.observe(heroStats);
 
 /* ────────────────────────────────────────────────
    PRICE CARD RE-ANIMATE ON TAB SWITCH
+   (single listener — no duplicate)
 ────────────────────────────────────────────────── */
-const origRPrc = rPrc;
-// Already defined above — just re-trigger animation on switch
+function registerPriceTilt() {
+  if (isTouchDevice) return;
+  document.querySelectorAll('.price-card.vis').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      gsap.to(card, { rotationY: x * 4, rotationX: -y * 4, transformPerspective: 900, ease: 'power2.out', duration: 0.4 });
+    });
+    card.addEventListener('mouseleave', () => {
+      gsap.to(card, { rotationY: 0, rotationX: 0, duration: 0.6, ease: 'elastic.out(1, 0.6)' });
+    });
+  });
+}
+registerPriceTilt(); // run once on initial render
+
 document.getElementById('price-tabs').addEventListener('click', () => {
   setTimeout(() => {
     document.querySelectorAll('.price-card.vis').forEach((card, i) => {
       card.style.opacity = '0';
       card.style.transform = 'translateY(22px) scale(.98)';
       setTimeout(() => {
-        gsap.to(card, {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.5,
-          ease: 'back.out(1.4)',
-          delay: i * 0.1
-        });
+        gsap.to(card, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: 'back.out(1.4)', delay: i * 0.1 });
       }, 30);
     });
+    registerPriceTilt();
   }, 10);
 });
 
